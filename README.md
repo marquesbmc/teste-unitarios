@@ -7,10 +7,8 @@
 *<h1 align="right">"O seu código sempre vai ser testado!" </h1>*
 
 
-# Teste de Software
 
 ## 1. O objetivo dos testes de software
-
 
 Um teste de software é um **software que executa outro software** afirmando que ele se comporta de uma determinada maneira.
 
