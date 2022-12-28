@@ -51,7 +51,7 @@ Observações Relevantes:
 -  **_Onde começar?_**:Se você começar a desenvolver testes para uma base de código existente sem nenhum teste, **é uma boa prática começar a escrever testes para código em que a maioria dos erros ocorreu no passado**. Dessa forma, você pode se concentrar nas partes críticas do seu aplicativo.
 
 
-[fonte:](https://martinfowler.com/articles/practical-test-pyramid.html)
+[fonte:https://martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
 
 
 ## 3. Convenções de nomenclatura de classes e métodos de teste
