@@ -2,8 +2,7 @@
 
 ![alt text](https://github.com/marquesbmc/images/blob/main/1-test.jpg)
 
-*<h1 align="right">"O seu código sempre vai ser testado!" </h1>*
-  
+*<h1 align="right" border-bottom: none>"O seu código sempre vai ser testado!" </h1>*
   
 ## 1. Definição de Teste de Software segundo Engenharia de Software
 
