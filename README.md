@@ -2,9 +2,8 @@
 
 ![alt text](https://github.com/marquesbmc/images/blob/main/1-test.jpg)
 
-<div class="text-right">
-# ##  *"O seu código sempre vai ser testado!"*
-</div>
+> # ##  *"O seu código sempre vai ser testado!"*
+
 
 
 
