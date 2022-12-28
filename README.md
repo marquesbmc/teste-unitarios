@@ -27,7 +27,7 @@ Para constatar a qualidade da aplicação, ela é submetida a avaliações que s
 -  **_Teste de segurança_**: Auxiliam a identificar vulnerabilidades e, posteriormente, repará-las. Ajuda a impulsionar o sistema atual e garantir que o sistema funcione por um período prolongado. Para perceber lacunas que causarão perda de informações vitais. É imperativo que os teste de segurança façam parte da Integração Contínua e da Implantação Contínua. 
 Para maiores informações consulte https://owasp.org/, no seu top 10 de [maiores vulnerabilidades](https://owasp.org/www-project-top-ten/). 
 
-## 2. A Pirâmide de Teste
+## 3. A Pirâmide de Teste
 
 
 <p align="center">
@@ -54,15 +54,16 @@ Observações Relevantes:
 [fonte:https://martinfowler.com](https://martinfowler.com/articles/practical-test-pyramid.html)
 
 
-## 3. Convenções de nomenclatura de classes e métodos de teste
+## 4. Convenções de nomenclatura de classes e métodos de teste
 
 Existem várias convenções de nomenclatura em potencial para testes de software. Uma solução amplamente usada para classes é **usar o sufixo _Test_ ou _Tests_ no final dos nomes das classes de teste.** Essa convenção também é usada pelo sistema de compilação popular para identificar o teste a ser executado.
 
 Como regra geral, um nome de método para um nome deve explicar o que o teste faz. Se isso for feito corretamente, a leitura da implementação real pode ser evitada.
 
-Uma convenção possível é usar o "deveria" no nome do método de teste. Por exemplo, `ordersShouldBeCreated`ou `menuShouldGetActive`. Isso dá uma dica do que deve acontecer se o método de teste for executado.
+Uma convenção possível é usar o "deveria" no nome do método de teste. Por exemplo, `pedidosDeveSerCriado`ou `menuDeveFicarAtivo`. Isso dá uma dica do que deve acontecer se o método de teste for executado.
 
-Outra abordagem é usar `given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]`para o nome de exibição do método de teste.
+Outra abordagem discutida 
+[no Twitter por Uncle Bob](https://twitter.com/unclebobmartin/status/1078664506790707200?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1078664506790707200%7Ctwgr%5E5302043fddf5e7e3c23aad3e1d88dd12eaaaaaba%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Ftype%3Dtext2Fhtmlkey%3Da19fcc184b9711e1b4764040d3dc5c07schema%3Dtwitterurl%3Dhttps3A%2F%2Ftwitter.com%2Funclebobmartin%2Fstatus%2F1078664506790707200image%3Dhttps3A%2F%2Fi.embed.ly%2F1%2Fimage3Furl3Dhttps253A252F252Fpbs.twimg.com252Fprofile_images252F1102364992252Fclean_code_72_color_400x400.png26key3Da19fcc184b9711e1b4764040d3dc5c07) é usar `given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]`para o nome de exibição do método de teste.
 
 ## 4. Objetos simulados (Mock)
 
