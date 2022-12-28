@@ -4,7 +4,7 @@
 
 
 
-<h1 align="right"> # ##  *"O seu código sempre vai ser testado!"* </h1>
+<h1 align="right">*"O seu código sempre vai ser testado!"* </h1>
 
 
 
