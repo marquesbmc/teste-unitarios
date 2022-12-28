@@ -523,5 +523,196 @@ Exemplo teste
 
 <h4>
 package br.com.dominio.sixxx.main
-<h4>
 </h4>
+
+```
+package br.com.dominio.sixxx.dao;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
+
+import br.com.dominio.sixxx.dominio.Lance;
+import br.com.dominio.sixxx.dominio.Leilao;
+import br.com.dominio.sixxx.dominio.Usuario;
+
+@SuppressWarnings("deprecation")
+public class CriadorDeSessao {
+
+
+	private static AnnotationConfiguration config;
+	private static SessionFactory sf;
+	
+	public Session getSession() {
+		if(sf == null) {
+			sf = getConfig().buildSessionFactory();
+		}
+		
+		return sf.openSession();
+	}
+
+	public Configuration getConfig() {
+		if(config == null) {
+			config = new AnnotationConfiguration()
+		    .addAnnotatedClass(Lance.class)
+		    .addAnnotatedClass(Leilao.class)
+		    .addAnnotatedClass(Usuario.class)
+			.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver")
+			.setProperty("hibernate.connection.url", "jdbc:hsqldb:dominio.db;shutdown=true")
+			.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect")
+			.setProperty("hibernate.connection.username", "sa")
+			.setProperty("hibernate.connection.password", "")
+			.setProperty("hibernate.show_sql", "true");
+		}
+		return config;
+	}
+}
+
+```
+
+```
+package br.com.dominio.sixxx.dao;
+
+import java.util.Calendar;
+import java.util.List;
+
+import org.hibernate.Session;
+
+import br.com.dominio.sixxx.dominio.Lance;
+import br.com.dominio.sixxx.dominio.Leilao;
+import br.com.dominio.sixxx.dominio.Usuario;
+
+public class LeilaoDao {
+
+	private final Session session;
+
+	public LeilaoDao(Session session) {
+		this.session = session;
+	}
+	
+	public void salvar(Leilao leilao) {
+		session.save(leilao);
+		
+		for(Lance lance : leilao.getLances()) {
+			session.save(lance);
+		}
+	}
+	
+	public Leilao porId(int id) {
+		return (Leilao) session.get(Leilao.class, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Leilao> novos() {
+		return session.createQuery("from Leilao l where usado = false")
+				.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Leilao> antigos() {
+		Calendar seteDiasAtras = Calendar.getInstance();
+		seteDiasAtras.add(Calendar.DAY_OF_MONTH, -7);
+		
+		return session.createQuery("from Leilao l where dataAbertura < :data")
+				.setParameter("data", seteDiasAtras)
+				.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Leilao> porPeriodo(Calendar inicio, Calendar fim) {
+		return session.createQuery("from Leilao l where l.dataAbertura " +
+				"between :inicio and :fim and l.encerrado = false")
+				.setParameter("inicio", inicio)
+				.setParameter("fim", fim)
+				.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Leilao> disputadosEntre(double inicio, double fim) {
+		return session.createQuery("from Leilao l where l.valorInicial " +
+				"between :inicio and :fim and l.encerrado = false " +
+				"and size(l.lances) > 3")
+				.setParameter("inicio", inicio)
+				.setParameter("fim", fim)
+				.list();
+	}
+	
+	public Long total() {
+		return (Long) session.createQuery("select count(l) from Leilao l where l.encerrado = false")
+				.uniqueResult();
+	}
+	
+	public void atualiza(Leilao leilao) {
+		session.merge(leilao);
+	}
+	
+	public void deleta(Leilao leilao) {
+		session.delete(leilao);
+	}
+	
+	public void deletaEncerrados() {
+		session
+			.createQuery("delete from Leilao l where l.encerrado = true")
+			.executeUpdate();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Leilao> listaLeiloesDoUsuario(Usuario usuario) {
+		return session.createQuery("select lance.leilao " +
+								   "from Lance lance " +
+								   "where lance.usuario = :usuario")
+				.setParameter("usuario", usuario).list();
+	}
+	
+	public double getValorInicialMedioDoUsuario(Usuario usuario) {
+		return (Double) session.createQuery("select avg(lance.leilao.valorInicial) " +
+											"from Lance lance " +
+											"where lance.usuario = :usuario")
+					.setParameter("usuario", usuario)
+					.uniqueResult();
+	}
+}
+
+```
+
+```
+package br.com.dominio.sixxx.dao;
+
+import org.hibernate.Session;
+
+import br.com.dominio.sixxx.dominio.Usuario;
+
+public class UsuarioDao {
+
+	private final Session session;
+
+	public UsuarioDao(Session session) {
+		this.session = session;
+	}
+	
+	public Usuario porId(int id) {
+		return (Usuario) session.load(Usuario.class, id);
+	}
+	
+	public Usuario porNomeEEmail(String nome, String email) {
+		return (Usuario) session.createQuery("from Usuario u where u.nome = :nome and u.email = :email")
+				.setParameter("nome", nome)
+				.setParameter("email", email)
+				.uniqueResult();
+	}
+	
+	public void salvar(Usuario usuario) {
+		session.save(usuario);
+	}
+	
+	public void atualizar(Usuario usuario) {
+		session.merge(usuario);
+	}
+	
+	public void deletar(Usuario usuario) {
+		session.delete(usuario);
+	}
+}
+
+```
