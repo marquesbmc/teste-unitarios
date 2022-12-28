@@ -19,13 +19,10 @@ Elencamos nos tópicos abaixo os principais testes que são importantes para o c
 
 -  **_Teste de integração_**: Visa testar o comportamento de um componente ou a integração entre um conjunto de componentes. Os testes de integração verificam se todo o sistema funciona como pretendido, reduzindo assim a necessidade de testes manuais intensivos. Esses tipos de testes permitem que você traduza suas histórias de usuários em um conjunto de testes. O teste se assemelharia a uma interação esperada do usuário com o aplicativo.
 
-
 -  **_Teste de performace_**: É um conjunto de séries de análises voltadas para o desempenho do software mediante várias situações. A partir dos diagnósticos, a equipe é capaz de compreender os limites do programa sob diversas condições.
-
 Para constatar a qualidade da aplicação, ela é submetida a avaliações que simulam eventos e situações previsíveis de acordo com a rotina do cliente, ou seja, testes de carga, estresse e estabilidade. Quaisquer falhas detectadas durante o teste são corrigidas pela equipe precisa e cirurgicamente.
 
 -  **_Teste de segurança_**: Auxiliam a identificar vulnerabilidades e, posteriormente, repará-las. Ajuda a impulsionar o sistema atual e garantir que o sistema funcione por um período prolongado. Para perceber lacunas que causarão perda de informações vitais. É imperativo que os teste de segurança façam parte da Integração Contínua e da Implantação Contínua. 
-
 Para maiores informações consulte https://owasp.org/, no seu top 10 de [maiores vulnerabilidades](https://owasp.org/www-project-top-ten/). 
 
 ## 1. O objetivo dos testes de software
@@ -47,7 +44,6 @@ O código que é testado normalmente é chamado de **_código em teste_** . Se v
 Um **_dispositivo de teste_** é um estado fixo de um conjunto de objetos que são usados como linha de base para a execução de testes. Outra maneira de descrever isso é uma pré-condição de teste.
 
 Por exemplo, um acessório de teste pode ser uma string fixa, que é usada como entrada para um método. O teste validaria se o método se comporta corretamente com essa entrada.
-
 
 
 
