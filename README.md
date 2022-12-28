@@ -7,7 +7,6 @@
 *<h1 align="right">"O seu código sempre vai ser testado!" </h1>*
 
 
-
 # Teste de Software
 
 ## 1. O objetivo dos testes de software
