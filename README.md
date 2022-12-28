@@ -62,8 +62,8 @@ Como regra geral, um nome de método para um nome deve explicar o que o teste fa
 
 Uma convenção possível é usar o "deveria" no nome do método de teste. Por exemplo, `pedidosDeveSerCriado`ou `menuDeveFicarAtivo`. Isso dá uma dica do que deve acontecer se o método de teste for executado.
 
-Outra abordagem discutida 
-[no Twitter por Uncle Bob](https://twitter.com/unclebobmartin/status/1078664506790707200?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1078664506790707200%7Ctwgr%5E5302043fddf5e7e3c23aad3e1d88dd12eaaaaaba%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Ftype%3Dtext2Fhtmlkey%3Da19fcc184b9711e1b4764040d3dc5c07schema%3Dtwitterurl%3Dhttps3A%2F%2Ftwitter.com%2Funclebobmartin%2Fstatus%2F1078664506790707200image%3Dhttps3A%2F%2Fi.embed.ly%2F1%2Fimage3Furl3Dhttps253A252F252Fpbs.twimg.com252Fprofile_images252F1102364992252Fclean_code_72_color_400x400.png26key3Da19fcc184b9711e1b4764040d3dc5c07) é usar `given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]`para o nome de exibição do método de teste.
+Outra abordagem discutida é usar `given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]`para o nome de exibição do método de teste. Essa abordagem foi amplamente discutida 
+[no Twitter por Uncle Bob](https://twitter.com/unclebobmartin/status/1078664506790707200?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1078664506790707200%7Ctwgr%5E5302043fddf5e7e3c23aad3e1d88dd12eaaaaaba%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Ftype%3Dtext2Fhtmlkey%3Da19fcc184b9711e1b4764040d3dc5c07schema%3Dtwitterurl%3Dhttps3A%2F%2Ftwitter.com%2Funclebobmartin%2Fstatus%2F1078664506790707200image%3Dhttps3A%2F%2Fi.embed.ly%2F1%2Fimage3Furl3Dhttps253A252F252Fpbs.twimg.com252Fprofile_images252F1102364992252Fclean_code_72_color_400x400.png26key3Da19fcc184b9711e1b4764040d3dc5c07).
 
 ## 4. Objetos simulados (Mock)
 
