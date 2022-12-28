@@ -5,10 +5,28 @@
 *<h3 align="right" >"O seu código sempre vai ser testado!" </h3>*
 
   
-## 1. Definição de Teste de Software segundo Engenharia de Software
+## 1. Definição de Teste de Software
 
 De acordo com o Padrão de Teste de Software [ANSI/IEEE 1059](https://www.softwaretestingmaterial.com/international-software-testing-standards/), o Teste em Engenharia de Software é um processo de análise de um produto ou sistema de software para examinar um produto ou sistema de software para determinar se ele satisfaz ou deixa de satisfazer as condições estabelecidas (ou seja, defeitos). O processo de teste avalia as características dos produtos de software quanto a requisitos como requisitos ausentes, bugs ou erros para avaliar sua confiabilidade, segurança e desempenho.
 
+## 2. Tipos de Teste de Software
+
+A engenharia de software conseguiu catalogar mais de 100 tipos de teste de software, a título de curiosidade o site [https://www.softwaretestingmaterial.com](https://www.softwaretestingmaterial.com/types-of-software-testing/) encontra-se a descrição de sua maioria. 
+
+Elencamos nos tópicos abaixo os principais testes que são importantes para o conhecimento e atenção no que compete o desenvolvimento de software e são largamente cobrados nas suas evolutivas de ambientes.
+
+-  **_Teste unitarios_**: São testes que verificam se uma parte específica do código, costumeiramente a nível de função, está funcionando corretamente. Em um ambiente orientado a objetos é usualmente a nível de classes e a mínima unidade de testes inclui construtores e destrutores. O objetivo do teste unitário é assegurar que cada unidade está funcionando de acordo com sua especificação funcional. Estes tipos de testes são frequentemente escritos por desenvolvedores quando trabalham no código, para assegurar que a função específica está executando como esperado. Uma função deve ter muitos testes para dar cobertura a todos os caminhos possíveis do seu código. Sozinho, o teste unitário não pode verificar a funcionalidade de uma parte do software, mas em contrapartida é usado para assegurar que os blocos constituintes do software trabalham independentes dos demais.
+
+-  **_Teste de integração_**: Visa testar o comportamento de um componente ou a integração entre um conjunto de componentes. Os testes de integração verificam se todo o sistema funciona como pretendido, reduzindo assim a necessidade de testes manuais intensivos. Esses tipos de testes permitem que você traduza suas histórias de usuários em um conjunto de testes. O teste se assemelharia a uma interação esperada do usuário com o aplicativo.
+
+
+-  **_Teste de performace_**: É um conjunto de séries de análises voltadas para o desempenho do software mediante várias situações. A partir dos diagnósticos, a equipe é capaz de compreender os limites do programa sob diversas condições.
+
+Para constatar a qualidade da aplicação, ela é submetida a avaliações que simulam eventos e situações previsíveis de acordo com a rotina do cliente, ou seja, testes de carga, estresse e estabilidade. Quaisquer falhas detectadas durante o teste são corrigidas pela equipe precisa e cirurgicamente.
+
+-  **_Teste de segurança_**: Auxiliam a identificar vulnerabilidades e, posteriormente, repará-las. Ajuda a impulsionar o sistema atual e garantir que o sistema funcione por um período prolongado. Para perceber lacunas que causarão perda de informações vitais. É imperativo que os teste de segurança façam parte da Integração Contínua e da Implantação Contínua. 
+
+Para maiores informações consulte https://owasp.org/, no seu top 10 de [maiores vulnerabilidades](https://owasp.org/www-project-top-ten/). 
 
 ## 1. O objetivo dos testes de software
 
@@ -31,15 +49,7 @@ Um **_dispositivo de teste_** é um estado fixo de um conjunto de objetos que s�
 Por exemplo, um acessório de teste pode ser uma string fixa, que é usada como entrada para um método. O teste validaria se o método se comporta corretamente com essa entrada.
 
 
-### 2.1. Testes unitários, de integração e de desempenho
 
-Nos testes, você distingue entre testes unitários, de integração e testes de desempenho:
-
--  **_O teste de unidade_** é um pedaço de código escrito por um desenvolvedor que executa uma funcionalidade específica no código a ser testado e afirma um determinado comportamento ou estado. A porcentagem de código que é testada por testes de unidade é normalmente chamada  de **_cobertura de teste_** . Um teste de unidade tem como alvo uma pequena unidade de código, por exemplo, um método ou uma classe. As dependências externas devem ser removidas dos testes de unidade, por exemplo, substituindo a dependência por uma implementação de teste ou um objeto (simulado) criado por uma estrutura de teste. Os testes de unidade não são adequados para testar interfaces de usuário complexas ou interação de componentes. Para isso, você deve desenvolver testes de integração.
-    
--   **_Um teste de integração_** visa testar o comportamento de um componente ou a integração entre um conjunto de componentes. Os testes de integração verificam se todo o sistema funciona como pretendido, reduzindo assim a necessidade de testes manuais intensivos. Esses tipos de testes permitem que você traduza suas histórias de usuários em um conjunto de testes. O teste se assemelharia a uma interação esperada do usuário com o aplicativo.
-    
--   **_Os testes de desempenho_** são usados ​​para comparar componentes de software repetidamente. Sua finalidade é garantir que o código em teste seja executado com rapidez suficiente, mesmo sob alta carga.
 
 ## 2.2. Teste de comportamento vs. estado
 
