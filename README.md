@@ -943,3 +943,28 @@ public class Usuario {
 }
 
 ```
+<h4>
+package br.com.dominio.sixxx.main.main
+</h4>
+
+_class CriaTabelas_
+```
+package br.com.dominio.sixxx.main;
+
+import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+
+import br.com.dominio.sixxx.dao.CriadorDeSessao;
+
+public class CriaTabelas {
+
+	public static void main(String[] args) {
+		
+		Configuration cfg = new CriadorDeSessao().getConfig();
+		SchemaExport se = new SchemaExport(cfg);
+		
+		se.create(true, true);
+	}
+	
+}
+```
