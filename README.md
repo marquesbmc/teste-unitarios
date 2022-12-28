@@ -522,7 +522,7 @@ Exemplo teste
 
 
 <h4>
-package br.com.dominio.sixxx.main
+package br.com.dominio.sixxx.main.dao
 </h4>
 
 
@@ -655,7 +655,6 @@ public class LeilaoDao {
 			.executeUpdate();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Leilao> listaLeiloesDoUsuario(Usuario usuario) {
 		return session.createQuery("select lance.leilao " +
 								   "from Lance lance " +
@@ -713,6 +712,234 @@ public class UsuarioDao {
 	public void deletar(Usuario usuario) {
 		session.delete(usuario);
 	}
+}
+
+```
+
+<h4>
+package br.com.dominio.sixxx.main.model
+</h4>
+
+_class Lance_
+```
+package br.com.dominio.sixxx.dominio;
+
+import java.util.Calendar;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Lance {
+
+	@Id @GeneratedValue
+	private int id;
+	private double valor;
+	private Calendar data;
+	@ManyToOne
+	private Usuario usuario;
+	@ManyToOne
+	private Leilao leilao;
+	
+	protected Lance() {}
+	public Lance(Calendar data, Usuario usuario, double valor, Leilao leilao) {
+		this.usuario = usuario;
+		this.data = data;
+		this.valor = valor;
+		this.leilao = leilao;
+	}
+	
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	public Leilao getLeilao() {
+		return leilao;
+	}
+	public void setLeilao(Leilao leilao) {
+		this.leilao = leilao;
+	}
+	public Calendar getData() {
+		return data;
+	}
+	public void setData(Calendar data) {
+		this.data = data;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public int getId() {
+		return id;
+	}
+	
+	
+}
+
+```
+
+_class Leilao_
+```
+package br.com.dominio.sixxx.dominio;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Leilao {
+
+	@Id @GeneratedValue
+	private int id;
+	private String nome;
+	private Double valorInicial;
+	@ManyToOne
+	private Usuario dono;
+	private Calendar dataAbertura;
+	private boolean usado;
+	private boolean encerrado;
+	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, mappedBy="leilao")
+	private List<Lance> lances;
+	
+	public Leilao() {
+		this.lances = new ArrayList<Lance>();
+		this.dataAbertura = Calendar.getInstance();
+	}
+	
+	public Leilao(String nome, Double valorInicial, Usuario dono, boolean usado) {
+		this();
+		this.nome = nome;
+		this.valorInicial = valorInicial;
+		this.dono = dono;
+		this.usado = usado;
+	}
+
+	public void setDataAbertura(Calendar dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
+	public Calendar getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setValorInicial(Double valorInicial) {
+		this.valorInicial = valorInicial;
+	}
+	
+	public Double getValorInicial() {
+		return valorInicial;
+	}
+	
+	public void setDono(Usuario usuario) {
+		this.dono = usuario;
+	}
+	
+	public Usuario getDono() {
+		return dono;
+	}
+
+	public boolean isUsado() {
+		return usado;
+	}
+
+	public void setUsado(boolean usado) {
+		this.usado = usado;
+	}
+
+	public List<Lance> getLances() {
+		return lances;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void encerra() {
+		this.encerrado = true;
+	}
+
+	public boolean isEncerrado() {
+		return encerrado;
+	}
+	
+	public Lance adicionaLance(Lance lance) {
+		lance.setLeilao(this);
+		lances.add(lance);
+		return lance;
+	}
+}
+
+```
+
+_class Usuario_
+```
+package br.com.dominio.sixxx.dominio;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Usuario {
+	
+	@Id @GeneratedValue
+	private int id;
+	private String nome;
+	private String email;
+
+	protected Usuario() {}
+	
+	public Usuario(String nome, String email) {
+		this.nome = nome;
+		this.email = email;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 }
 
 ```
