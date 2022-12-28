@@ -525,6 +525,8 @@ Exemplo teste
 package br.com.dominio.sixxx.main
 </h4>
 
+
+_class LeilaoDao_
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -537,7 +539,6 @@ import br.com.dominio.sixxx.dominio.Lance;
 import br.com.dominio.sixxx.dominio.Leilao;
 import br.com.dominio.sixxx.dominio.Usuario;
 
-@SuppressWarnings("deprecation")
 public class CriadorDeSessao {
 
 
@@ -571,6 +572,7 @@ public class CriadorDeSessao {
 
 ```
 
+_class LeilaoDao_
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -603,13 +605,11 @@ public class LeilaoDao {
 		return (Leilao) session.get(Leilao.class, id);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Leilao> novos() {
 		return session.createQuery("from Leilao l where usado = false")
 				.list();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Leilao> antigos() {
 		Calendar seteDiasAtras = Calendar.getInstance();
 		seteDiasAtras.add(Calendar.DAY_OF_MONTH, -7);
@@ -619,7 +619,6 @@ public class LeilaoDao {
 				.list();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Leilao> porPeriodo(Calendar inicio, Calendar fim) {
 		return session.createQuery("from Leilao l where l.dataAbertura " +
 				"between :inicio and :fim and l.encerrado = false")
@@ -628,7 +627,6 @@ public class LeilaoDao {
 				.list();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Leilao> disputadosEntre(double inicio, double fim) {
 		return session.createQuery("from Leilao l where l.valorInicial " +
 				"between :inicio and :fim and l.encerrado = false " +
@@ -676,6 +674,8 @@ public class LeilaoDao {
 
 ```
 
+
+_class UsuarioDao_
 ```
 package br.com.dominio.sixxx.dao;
 
