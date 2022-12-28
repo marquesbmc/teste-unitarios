@@ -1111,9 +1111,9 @@ public class LeilaoDaoTest {
 _test_: package br.com.dominio.sixxx.main.dao
 </h4>
 
-_class UsuarioDaoTest_
-<detail>
-	<sumary markdown="span"> _class UsuarioDaoTest_ </sumary>
+
+<details open>
+<summary>class UsuarioDaoTest</summary>
 
 ```
 package br.com.dominio.sixxx.dao;
@@ -1167,11 +1167,6 @@ public class UsuarioDaoTest {
 ```
 </details>
 
-<details open>
-<summary>Shopping list</summary>
 
-* Vegetables
-* Fruits
-* Fish
 
-</details>
+
