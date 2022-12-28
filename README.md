@@ -1112,9 +1112,8 @@ _test_: package br.com.dominio.sixxx.main.dao
 </h4>
 
 <details>
-	<sumary markdown="span"> teste</sumary>
+	<sumary markdown="span"> _class UsuarioDaoTest_ </sumary>
 </details>
-_class UsuarioDaoTest_<<
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -1165,3 +1164,4 @@ public class UsuarioDaoTest {
 }
 
 ```
+</details>
