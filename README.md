@@ -522,7 +522,7 @@ Exemplo teste
 
 
 <h4>
-package br.com.dominio.sixxx.main.dao
+_src_: package br.com.dominio.sixxx.main.dao
 </h4>
 
 
@@ -717,7 +717,7 @@ public class UsuarioDao {
 ```
 
 <h4>
-package br.com.dominio.sixxx.main.model
+_src_: package br.com.dominio.sixxx.main.model
 </h4>
 
 _class Lance_
@@ -944,7 +944,7 @@ public class Usuario {
 
 ```
 <h4>
-package br.com.dominio.sixxx.main.main
+_src_: package br.com.dominio.sixxx.main.main
 </h4>
 
 _class CriaTabelas_
@@ -967,4 +967,198 @@ public class CriaTabelas {
 	}
 	
 }
+```
+<h4>
+_test_: package br.com.dominio.sixxx.main.dao
+</h4>
+
+_class LeilaoDaoTest_
+```
+package br.com.dominio.sixxx.dao;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import br.com.dominio.sixxx.dominio.Leilao;
+import br.com.dominio.sixxx.dominio.Usuario;
+
+public class LeilaoDaoTest {
+
+	private Session session;
+	private UsuarioDao usuarioDao;
+	private LeilaoDao leilaoDao;
+
+	@Before
+	public void setUp() {
+		session = (Session) new CriadorDeSessao().getSession();
+		usuarioDao = new UsuarioDao(session);
+		leilaoDao = new LeilaoDao(session);
+
+		session.beginTransaction();
+	}
+
+	@After
+	public void endSession() {
+		session.getTransaction().rollback();
+		session.close(); 
+	}
+
+	@Test
+	public void deveContarLeiloesNaoEncerrados() {
+		Usuario mauricio = new Usuario("Mauricio", "mauricio@mauricio.com.br");
+
+		Leilao ativo = new Leilao("Geladeira", 1500.0, mauricio, false);
+		Leilao encerrado = new Leilao("XBox", 700.0, mauricio, false);
+		encerrado.encerra();
+
+		usuarioDao.salvar(mauricio);
+		leilaoDao.salvar(ativo);
+		leilaoDao.salvar(encerrado);
+
+		long total = leilaoDao.total();
+
+		assertEquals(1L, total);
+	}
+
+	@Test
+	public void deveRetornarZeroSeNaoHaLeiloesNovos() {
+		Usuario mauricio = new Usuario("Mauricio Aniche", "mauricio@aniche.com.br");
+
+		Leilao encerrado = new Leilao("Geladeira", 1500.0, mauricio, false);
+		Leilao tambemEncerrado = new Leilao("XBox", 700.0, mauricio, false);
+		encerrado.encerra();
+		tambemEncerrado.encerra();
+
+		usuarioDao.salvar(mauricio);
+		leilaoDao.salvar(tambemEncerrado);
+		leilaoDao.salvar(encerrado);
+
+		long total = leilaoDao.total();
+
+		assertEquals(0L, total);
+	}
+
+	@Test
+	public void deveRetornarLeiloesDeProdutosNovos() {
+		Usuario mauricio = new Usuario("Mauricio Aniche", "mauricio@aniche.com.br");
+
+		Leilao produtoNovo = new Leilao("XBox", 700.0, mauricio, false);
+		Leilao produtoUsado = new Leilao("Geladeira", 1500.0, mauricio, true);
+
+		usuarioDao.salvar(mauricio);
+		leilaoDao.salvar(produtoNovo);
+		leilaoDao.salvar(produtoUsado);
+
+		List<Leilao> novos = leilaoDao.novos();
+
+		assertEquals(1, novos.size());
+		assertEquals("XBox", novos.get(0).getNome());
+	}
+
+	@Test
+	public void deveTrazerSomenteLeiloesAntigos() {
+		Usuario mauricio = new Usuario("Mauricio Aniche", "mauricio@aniche.com.br");
+
+		Leilao recente = new Leilao("XBox", 700.0, mauricio, false);
+		Leilao antigo = new Leilao("Geladeira", 1500.0, mauricio, true);
+
+		Calendar dataRecente = Calendar.getInstance();
+		Calendar dataAntiga = Calendar.getInstance();
+		dataAntiga.add(Calendar.DAY_OF_MONTH, -10);
+
+		recente.setDataAbertura(dataRecente);
+		antigo.setDataAbertura(dataAntiga);
+
+		usuarioDao.salvar(mauricio);
+		leilaoDao.salvar(recente);
+		leilaoDao.salvar(antigo);
+
+		List<Leilao> antigos = leilaoDao.antigos();
+
+		assertEquals(1, antigos.size());
+		assertEquals("Geladeira", antigos.get(0).getNome());
+	}
+
+	@Test
+	public void deveTrazerSomenteLeiloesAntigosHaMaisDe7Dias() {
+		Usuario mauricio = new Usuario("Mauricio Aniche", "mauricio@aniche.com.br");
+
+		Leilao noLimite = new Leilao("XBox", 700.0, mauricio, false);
+
+		Calendar dataAntiga = Calendar.getInstance();
+		dataAntiga.add(Calendar.DAY_OF_MONTH, -7);
+
+		noLimite.setDataAbertura(dataAntiga);
+
+		usuarioDao.salvar(mauricio);
+		leilaoDao.salvar(noLimite);
+
+		List<Leilao> antigos = leilaoDao.antigos();
+
+		assertEquals(1, antigos.size());
+	}
+}
+
+```
+<h4>
+_test_: package br.com.dominio.sixxx.main.dao
+</h4>
+
+_class UsuarioDaoTest_
+```
+package br.com.dominio.sixxx.dao;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import org.hibernate.Session;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import br.com.dominio.sixxx.dominio.Usuario;
+
+public class UsuarioDaoTest {
+
+	private Session session;
+	private UsuarioDao usuarioDao;
+
+	@Before
+	public void setUp() {
+		session = (Session) new CriadorDeSessao().getSession();
+		usuarioDao = new UsuarioDao(session);
+	}
+	
+	@After
+	public void endSession() {
+		session.close();
+	}
+
+	@Test
+	public void deveEncontrarPeloNomeEEmail() {
+
+		Usuario novoUsuario = new Usuario("Joao da Silva", "joao@dasilva.com.br");
+		usuarioDao.salvar(novoUsuario);
+
+		Usuario usuarioDoBanco = usuarioDao.porNomeEEmail("Joao da Silva", "joao@dasilva.com.br");
+
+		assertEquals("Joao da Silva", usuarioDoBanco.getNome());
+		assertEquals("joao@dasilva.com.br", usuarioDoBanco.getEmail());
+	}
+
+	@Test
+	public void deRetornarNuloSeNaoEncontrarUsuario() {
+
+		Usuario usuarioDoBanco = usuarioDao.porNomeEEmail("Joao Joaquim", "joao@joaquim.com.br");
+		assertNull(usuarioDoBanco);
+	}
+}
+
 ```
