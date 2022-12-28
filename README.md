@@ -1113,7 +1113,7 @@ _test_: package br.com.dominio.sixxx.main.dao
 
 
 <details open>
-<summary>class UsuarioDaoTest</summary>
+<summary markdown="span">class UsuarioDaoTest</summary>
 
 ```
 package br.com.dominio.sixxx.dao;
