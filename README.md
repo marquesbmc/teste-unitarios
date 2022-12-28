@@ -12,10 +12,6 @@ De acordo com o Padrão de Teste de Software [ANSI/IEEE 1059](https://www.softwa
 
 ## 1. O objetivo dos testes de software
 
-Um teste de software é um **software que executa outro software** afirmando que ele se comporta de uma determinada maneira.
-
-
-
 Com os testes de software, você garante que certas partes do nosso software funcionem conforme o esperado. Esses **testes geralmente são executados automaticamente** por meio do sistema de compilação e, portanto, ajudam o desenvolvedor a evitar quebrar o código existente durante as atividades de desenvolvimento.
 
 Executar testes automaticamente ajuda a identificar regressões de software introduzidas por alterações no código-fonte. Ter uma **alta cobertura de teste do seu código** permite que você continue desenvolvendo recursos sem ter que realizar muitos testes manuais.
@@ -30,7 +26,7 @@ Se você começar a desenvolver testes para uma base de código existente sem ne
 
 O código que é testado normalmente é chamado de **_código em teste_** . Se você estiver testando um aplicativo, isso será chamado de **_aplicativo em teste_** .
 
-Um **_dispositivo de teste_** é um estado fixo de um conjunto de objetos que são usados ​​como linha de base para a execução de testes. Outra maneira de descrever isso é uma pré-condição de teste.
+Um **_dispositivo de teste_** é um estado fixo de um conjunto de objetos que são usados como linha de base para a execução de testes. Outra maneira de descrever isso é uma pré-condição de teste.
 
 Por exemplo, um acessório de teste pode ser uma string fixa, que é usada como entrada para um método. O teste validaria se o método se comporta corretamente com essa entrada.
 
