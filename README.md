@@ -65,27 +65,62 @@ Uma convenção possível é usar o "deveria" no nome do método de teste. Por e
 Outra abordagem discutida é usar `given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]`para o nome de exibição do método de teste. Essa abordagem foi amplamente discutida 
 [no Twitter por Uncle Bob](https://twitter.com/unclebobmartin/status/1078664506790707200?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1078664506790707200%7Ctwgr%5E5302043fddf5e7e3c23aad3e1d88dd12eaaaaaba%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Ftype%3Dtext2Fhtmlkey%3Da19fcc184b9711e1b4764040d3dc5c07schema%3Dtwitterurl%3Dhttps3A%2F%2Ftwitter.com%2Funclebobmartin%2Fstatus%2F1078664506790707200image%3Dhttps3A%2F%2Fi.embed.ly%2F1%2Fimage3Furl3Dhttps253A252F252Fpbs.twimg.com252Fprofile_images252F1102364992252Fclean_code_72_color_400x400.png26key3Da19fcc184b9711e1b4764040d3dc5c07).
 
-## 4. Objetos simulados (Mock)
-
-Em seus testes de unidade, você deseja testar determinada funcionalidade (a classe em teste) isoladamente. Outras funcionalidades necessárias para testar a classe em teste devem ser controladas para evitar efeitos colaterais.
-
-Um **_objeto simulado_** é uma implementação fictícia de uma interface ou classe. Os objetos simulados permitem definir a saída de determinadas chamadas de métodos. Eles normalmente registram a interação com o sistema e os testes podem validar isso.
-
-**Você pode criar objetos fictícios manualmente (via código)** ou usar uma estrutura fictícia para simular essas classes. As estruturas simuladas permitem que você crie objetos simulados em tempo de execução e defina seu comportamento.
-
-O **exemplo** clássico de um objeto simulado é um provedor de dados. Na produção é usada uma implementação para conectar à fonte de dados real. Mas para testar um objeto simulado, nós simulamos a fonte de dados para garantir que as condições de teste sejam sempre as mesmas.
-
-Esses objetos simulados podem ser fornecidos para a classe que é testada. **Portanto, a classe a ser testada deve evitar qualquer dependência de dados externos.**
-
-As estruturas simuladas ou simuladas permitem testar a interação esperada com o objeto simulado. Você pode, por exemplo, validar que apenas determinados métodos foram chamados no **objeto mock.**
+## 4. Show me code!
 
 
-  ## 5.Teste de unidade com JUnit 4
+### 4.1. Instalaçao JUnit 4 com Maven
+Para usar JUnit em sua compilação do Maven, adicione a seguinte dependência ao seu arquivo pom.
+```
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+</dependency>
+```
 
-### 5.1. A estrutura JUnit
-[JUnit](http://junit.org/) é uma estrutura de teste que usa anotações para identificar métodos que especificam um teste. JUnit é um projeto de código aberto hospedado no [Github](https://github.com/junit-team/junit) .
+### 4.2. Definindo métodos de teste
 
-### 5.2. A estrutura JUnitComo definir um teste no JUnit?
+JUnit usa anotações para marcar métodos como métodos de teste e configurá-los. A tabela a seguir fornece uma visão geral das anotações mais importantes no JUnit para as versões 4.xe 5.x. Todas essas anotações podem ser usadas em métodos.
+
+*Tabela 1. Anotações*
+
+| JUnit 4 | Descrição |
+|---------|-----------|
+| import org.junit.* | Instrução de importação para usar as anotações a seguir. |
+| @Test | Identifica um método como um método de teste. |
+| @Before | Executado antes de cada teste. Ele é usado para preparar o ambiente de teste (por exemplo, ler dados de entrada, inicializar a classe). |
+| @After | Executado após cada teste. Ele é usado para limpar o ambiente de teste (por exemplo, excluir dados temporários, restaurar padrões). Ele também pode economizar memória limpando estruturas de memória caras. |
+| @BeforeClass | Executado uma vez, antes do início de todos os testes. Ele é usado para realizar atividades intensivas em tempo, por exemplo, para se conectar a um banco de dados. Os métodos marcados com esta anotação precisam ser definidos `static`para funcionar com JUnit. |
+| @AfterClass | Executado uma vez, após a conclusão de todos os testes. Ele é usado para realizar atividades de limpeza, por exemplo, para se desconectar de um banco de dados. Os métodos anotados com esta anotação precisam ser definidos `static`para funcionar com JUnit. |
+|@Test (expected = Exception.class)|Falha se o método não lançar a exceção nomeada.|
+|@Test(timeout=100)|Falha se o método demorar mais de 100 milissegundos.|
+------------------------------------------------------------------------------
+
+
+### 4.3. Declarações de declaração
+
+JUnit fornece métodos estáticos para testar determinadas condições por meio da `Assert`classe. Essas **_declarações assert_** geralmente começam com `assert`. Eles permitem que você especifique a mensagem de erro, o resultado esperado e o resultado real. Um _método de asserção_ compara o valor real retornado por um teste com o valor esperado. Ele lança um `AssertionException`se a comparação falhar.
+
+A tabela a seguir fornece uma visão geral desses métodos. Os parâmetros entre colchetes [] são opcionais e do tipo String.
+
+
+*Tabela 2. Métodos para afirmar os resultados do teste*
+
+| Declaração | Descrição |
+|--|--|
+| falha([mensagem]) | Deixe o método falhar. Pode ser usado para verificar se uma determinada parte do código não foi alcançada ou para ter um teste com falha antes que o código de teste seja implementado. O parâmetro mensagem é opcional. |
+| assertTrue([mensagem,] condição booleana) | Verifica se a condição booleana é verdadeira. |
+| assertFalse([mensagem,] condição booleana) | Verifica se a condição booleana é falsa. |
+| assertEquals([mensagem,] esperado, real) | Testa se dois valores são iguais. Nota: para arrays a referência é verificada e não o conteúdo dos arrays. |
+| assertEquals([mensagem,] esperado, real, tolerância) | Teste se os valores float ou double correspondem. A tolerância é o número de casas decimais que devem ser iguais. |
+| assertNull([mensagem,] objeto) | Verifica se o objeto é nulo. |
+| assertNotNull([mensagem,] objeto) | Verifica se o objeto não é nulo. |
+| assertSame([mensagem,] esperado, real) | Verifica se ambas as variáveis ​​se referem ao mesmo objeto. |
+| assertNotSame([mensagem,] esperado, real) | Verifica se ambas as variáveis ​​se referem a objetos diferentes. |
+
+### 4.4.Teste de unidade com JUnit 4
+
+[JUnit](http://junit.org/) é uma estrutura de teste que usa anotações para identificar métodos que especificam um teste. JUnit é um projeto de código aberto hospedado no [Github](https://github.com/junit-team/junit).
 
 _Um teste_ JUnit é um método contido em uma classe que é usado apenas para teste. Isso é chamado **_de classe de teste_** . Para definir que um determinado método é um método de teste, anote-o com a `@Test`anotação.
 
@@ -93,7 +128,7 @@ Este método executa o código em teste. Você usa um método **_assert_** , for
 
 **Você deve fornecer mensagens significativas em declarações assert.** Isso torna mais fácil para o usuário identificar e corrigir o problema. Isso é especialmente verdadeiro se alguém olhar para o problema, que não escreveu o código em teste ou o código de teste.
 
-### 5.3. Exemplo de teste unitário
+_Exemplo de teste unitário_
 
 O código a seguir mostra um teste JUnit usando a versão JUnit 4.
 
@@ -101,7 +136,7 @@ Suponha que você tenha essa classe que deseja testar.
 
 
 ```
-package br.gov.caixa.sixxx;
+package br.gov.dominio.sixxx;
 
 public class Calculator {
 
@@ -115,7 +150,7 @@ Uma classe de teste contendo testes de software para a classe acima pode ter a s
 
 
 ```
-package br.gov.caixa.sixxx;
+package br.gov.dominio.sixxx;
 
 import static org.junit.Assert.assertEquals;
 
@@ -143,42 +178,30 @@ public class CalculatorTest {
     }
 }
 ```
+
+
+
+## 4. Objetos simulados (Mock)
+
+Em seus testes de unidade, você deseja testar determinada funcionalidade (a classe em teste) isoladamente. Outras funcionalidades necessárias para testar a classe em teste devem ser controladas para evitar efeitos colaterais.
+
+Um **_objeto simulado_** é uma implementação fictícia de uma interface ou classe. Os objetos simulados permitem definir a saída de determinadas chamadas de métodos. Eles normalmente registram a interação com o sistema e os testes podem validar isso.
+
+**Você pode criar objetos fictícios manualmente (via código)** ou usar uma estrutura fictícia para simular essas classes. As estruturas simuladas permitem que você crie objetos simulados em tempo de execução e defina seu comportamento.
+
+O **exemplo** clássico de um objeto simulado é um provedor de dados. Na produção é usada uma implementação para conectar à fonte de dados real. Mas para testar um objeto simulado, nós simulamos a fonte de dados para garantir que as condições de teste sejam sempre as mesmas.
+
+Esses objetos simulados podem ser fornecidos para a classe que é testada. **Portanto, a classe a ser testada deve evitar qualquer dependência de dados externos.**
+
+As estruturas simuladas ou simuladas permitem testar a interação esperada com o objeto simulado. Você pode, por exemplo, validar que apenas determinados métodos foram chamados no **objeto mock.**
+
+
 ### 5.4.  Convenções de nomenclatura JUnit para Maven
 
 Se estiver usando o sistema de compilação Maven, você deve usar o sufixo "Test" para classes de teste. O sistema de compilação Maven (por meio de seu plug-in surfire) inclui automaticamente essas classes em seu escopo de teste.
 
 Esta classe pode ser executada como qualquer outro programa Java na linha de comando. Você só precisa adicionar o arquivo JAR da biblioteca JUnit ao caminho de classe.
 
-## 6. Usando JUnit 4
-
-### 6.1. Instalaçao JUnit com Maven
-Para usar JUnit em sua compilação do Maven, adicione a seguinte dependência ao seu arquivo pom.
-```
-<dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-</dependency>
-```
-
-
-### 6.2. Definindo métodos de teste
-
-JUnit usa anotações para marcar métodos como métodos de teste e configurá-los. A tabela a seguir fornece uma visão geral das anotações mais importantes no JUnit para as versões 4.xe 5.x. Todas essas anotações podem ser usadas em métodos.
-
-*Tabela 1. Anotações*
-
-| JUnit 4 | Descrição |
-|---------|-----------|
-| import org.junit.* | Instrução de importação para usar as anotações a seguir. |
-| @Test | Identifica um método como um método de teste. |
-| @Before | Executado antes de cada teste. Ele é usado para preparar o ambiente de teste (por exemplo, ler dados de entrada, inicializar a classe). |
-| @After | Executado após cada teste. Ele é usado para limpar o ambiente de teste (por exemplo, excluir dados temporários, restaurar padrões). Ele também pode economizar memória limpando estruturas de memória caras. |
-| @BeforeClass | Executado uma vez, antes do início de todos os testes. Ele é usado para realizar atividades intensivas em tempo, por exemplo, para se conectar a um banco de dados. Os métodos marcados com esta anotação precisam ser definidos `static`para funcionar com JUnit. |
-| @AfterClass | Executado uma vez, após a conclusão de todos os testes. Ele é usado para realizar atividades de limpeza, por exemplo, para se desconectar de um banco de dados. Os métodos anotados com esta anotação precisam ser definidos `static`para funcionar com JUnit. |
-|@Test (expected = Exception.class)|Falha se o método não lançar a exceção nomeada.|
-|@Test(timeout=100)|Falha se o método demorar mais de 100 milissegundos.|
-------------------------------------------------------------------------------
 
 ### 6.3. Declarações de declaração
 
