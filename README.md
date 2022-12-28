@@ -514,3 +514,9 @@ import static org.junit.Assert.assertEquals;
 // use assertEquals directly because of the static import
 assertEquals("10 x 5 must be 50", 50, tester.multiply(10, 5));
 ```
+### 5.0.  Show me code!
+
+Exemplo teste
+
+![alt text](https://github.com/marquesbmc/images/blob/main/test-tree-code.png)
+
