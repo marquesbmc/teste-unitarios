@@ -11,19 +11,27 @@ De acordo com o Padrão de Teste de Software [ANSI/IEEE 1059](https://www.softwa
 
 ## 2. Tipos de Teste de Software
 
-A engenharia de software conseguiu catalogar mais de 100 tipos de teste de software, a título de curiosidade o site [https://www.softwaretestingmaterial.com](https://www.softwaretestingmaterial.com/types-of-software-testing/) encontra-se a descrição de sua maioria. 
+A engenharia de software já conseguiu categorizar mais de 100 tipos de teste de software, a título de curiosidade o site [https://www.softwaretestingmaterial.com](https://www.softwaretestingmaterial.com/types-of-software-testing/) encontra-se a descrição de sua maioria. 
 
-Elencamos nos tópicos abaixo os principais testes que são importantes para o conhecimento e atenção no que compete o desenvolvimento de software e são largamente cobrados nas suas evolutivas de ambientes.
+Elencamos nos tópicos abaixo os principais testes que são importantes para o conhecimento e atenção no que compete o desenvolvimento de software e são largamente requerido nas evolutivas de ambientes.
 
 -  **_Teste unitarios_**: São testes que verificam se uma parte específica do código, costumeiramente a nível de função, está funcionando corretamente. Em um ambiente orientado a objetos é usualmente a nível de classes e a mínima unidade de testes inclui construtores e destrutores. O objetivo do teste unitário é assegurar que cada unidade está funcionando de acordo com sua especificação funcional. Estes tipos de testes são frequentemente escritos por desenvolvedores quando trabalham no código, para assegurar que a função específica está executando como esperado. Uma função deve ter muitos testes para dar cobertura a todos os caminhos possíveis do seu código. Sozinho, o teste unitário não pode verificar a funcionalidade de uma parte do software, mas em contrapartida é usado para assegurar que os blocos constituintes do software trabalham independentes dos demais.
 
 -  **_Teste de integração_**: Visa testar o comportamento de um componente ou a integração entre um conjunto de componentes. Os testes de integração verificam se todo o sistema funciona como pretendido, reduzindo assim a necessidade de testes manuais intensivos. Esses tipos de testes permitem que você traduza suas histórias de usuários em um conjunto de testes. O teste se assemelharia a uma interação esperada do usuário com o aplicativo.
+
+-  **_Teste de interface do usuário_**: Propõe-se a certificar se a interface do usuário do seu aplicativo funciona corretamente. A entrada do usuário deve acionar as ações corretas, os dados devem ser apresentados ao usuário, o estado da interface do usuário deve mudar conforme o esperado.
 
 -  **_Teste de performace_**: É um conjunto de séries de análises voltadas para o desempenho do software mediante várias situações. A partir dos diagnósticos, a equipe é capaz de compreender os limites do programa sob diversas condições.
 Para constatar a qualidade da aplicação, ela é submetida a avaliações que simulam eventos e situações previsíveis de acordo com a rotina do cliente, ou seja, testes de carga, estresse e estabilidade. Quaisquer falhas detectadas durante o teste são corrigidas pela equipe precisa e cirurgicamente.
 
 -  **_Teste de segurança_**: Auxiliam a identificar vulnerabilidades e, posteriormente, repará-las. Ajuda a impulsionar o sistema atual e garantir que o sistema funcione por um período prolongado. Para perceber lacunas que causarão perda de informações vitais. É imperativo que os teste de segurança façam parte da Integração Contínua e da Implantação Contínua. 
 Para maiores informações consulte https://owasp.org/, no seu top 10 de [maiores vulnerabilidades](https://owasp.org/www-project-top-ten/). 
+
+## 2. A Pirâmide de Teste
+
+
+![alt text](https://github.com/marquesbmc/images/blob/main/test-piramide.png)
+
 
 ## 1. O objetivo dos testes de software
 
