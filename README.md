@@ -526,7 +526,9 @@ _src_: package br.com.dominio.sixxx.main.dao
 </h4>
 
 
-_class LeilaoDao_
+
+<details close>
+<summary markdown="span">class CriadorDeSessao</summary>
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -571,8 +573,10 @@ public class CriadorDeSessao {
 }
 
 ```
+</details>
 
-_class LeilaoDao_
+<details close>
+<summary markdown="span">class LeilaoDao</summary>
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -672,9 +676,12 @@ public class LeilaoDao {
 }
 
 ```
+</details>
 
 
-_class UsuarioDao_
+
+<details close>
+<summary markdown="span">class UsuarioDao</summary>
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -715,12 +722,16 @@ public class UsuarioDao {
 }
 
 ```
+</details>
+
 
 <h4>
 _src_: package br.com.dominio.sixxx.main.model
 </h4>
 
-_class Lance_
+
+<details close>
+<summary markdown="span">class Lance</summary>
 ```
 package br.com.dominio.sixxx.dominio;
 
@@ -783,8 +794,10 @@ public class Lance {
 }
 
 ```
+</details>
 
-_class Leilao_
+<details close>
+<summary markdown="span">class Leilao</summary>
 ```
 package br.com.dominio.sixxx.dominio;
 
@@ -891,8 +904,10 @@ public class Leilao {
 }
 
 ```
+</details>
 
-_class Usuario_
+<details close>
+<summary markdown="span">class Usuario</summary>
 ```
 package br.com.dominio.sixxx.dominio;
 
@@ -943,11 +958,16 @@ public class Usuario {
 }
 
 ```
+</details>
+
+
 <h4>
 _src_: package br.com.dominio.sixxx.main.main
 </h4>
 
-_class CriaTabelas_
+<details close>
+<summary markdown="span">class CriaTabelas</summary>
+
 ```
 package br.com.dominio.sixxx.main;
 
@@ -968,11 +988,18 @@ public class CriaTabelas {
 	
 }
 ```
+</details>
+
+
+
 <h4>
 _test_: package br.com.dominio.sixxx.main.dao
 </h4>
 
-_class LeilaoDaoTest_
+
+<details close>
+<summary markdown="span">class LeilaoDaoTest</summary>
+
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -1107,6 +1134,9 @@ public class LeilaoDaoTest {
 }
 
 ```
+</details>
+
+
 <h4>
 _test_: package br.com.dominio.sixxx.main.dao
 </h4>
