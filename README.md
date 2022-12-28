@@ -29,9 +29,11 @@ Para maiores informações consulte https://owasp.org/, no seu top 10 de [maiore
 
 ## 2. A Pirâmide de Teste
 
-
+<center>
+  
 ![alt text](https://github.com/marquesbmc/images/blob/main/test-piramide.png)
 
+ </center>
 
 ## 1. O objetivo dos testes de software
 
