@@ -97,7 +97,7 @@ JUnit usa anotações para marcar métodos como métodos de teste e configurá-l
 ------------------------------------------------------------------------------
 
 
-### 4.3. Declarações de declaração
+### 4.3. Declarações de asserção 
 
 JUnit fornece métodos estáticos para testar determinadas condições por meio da `Assert`classe. Essas **_declarações assert_** geralmente começam com `assert`. Eles permitem que você especifique a mensagem de erro, o resultado esperado e o resultado real. Um _método de asserção_ compara o valor real retornado por um teste com o valor esperado. Ele lança um `AssertionException`se a comparação falhar.
 
@@ -115,8 +115,8 @@ A tabela a seguir fornece uma visão geral desses métodos. Os parâmetros entre
 | assertEquals([mensagem,] esperado, real, tolerância) | Teste se os valores float ou double correspondem. A tolerância é o número de casas decimais que devem ser iguais. |
 | assertNull([mensagem,] objeto) | Verifica se o objeto é nulo. |
 | assertNotNull([mensagem,] objeto) | Verifica se o objeto não é nulo. |
-| assertSame([mensagem,] esperado, real) | Verifica se ambas as variáveis ​​se referem ao mesmo objeto. |
-| assertNotSame([mensagem,] esperado, real) | Verifica se ambas as variáveis ​​se referem a objetos diferentes. |
+| assertSame([mensagem,] esperado, real) | Verifica se ambas as variáveis se referem ao mesmo objeto. |
+| assertNotSame([mensagem,] esperado, real) | Verifica se ambas as variáveis se referem a objetos diferentes. |
 
 ### 4.4.Teste de unidade com JUnit 4
 
