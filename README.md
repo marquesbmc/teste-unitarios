@@ -1111,7 +1111,7 @@ public class LeilaoDaoTest {
 _test_: package br.com.dominio.sixxx.main.dao
 </h4>
 
-<details>
+<class_UsuarioDaoTest>
 	<sumary markdown="span"> _class UsuarioDaoTest_ </sumary>
 
 ```
@@ -1164,4 +1164,4 @@ public class UsuarioDaoTest {
 }
 
 ```
-</details>
+</class_UsuarioDaoTest>
