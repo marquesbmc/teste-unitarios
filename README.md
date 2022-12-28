@@ -65,7 +65,7 @@ Uma convenção possível é usar o "deveria" no nome do método de teste. Por e
 Outra abordagem discutida é usar `given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]`para o nome de exibição do método de teste. Essa abordagem foi amplamente discutida 
 [no Twitter por Uncle Bob](https://twitter.com/unclebobmartin/status/1078664506790707200?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1078664506790707200%7Ctwgr%5E5302043fddf5e7e3c23aad3e1d88dd12eaaaaaba%7Ctwcon%5Es1_&ref_url=https%3A%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Ftype%3Dtext2Fhtmlkey%3Da19fcc184b9711e1b4764040d3dc5c07schema%3Dtwitterurl%3Dhttps3A%2F%2Ftwitter.com%2Funclebobmartin%2Fstatus%2F1078664506790707200image%3Dhttps3A%2F%2Fi.embed.ly%2F1%2Fimage3Furl3Dhttps253A252F252Fpbs.twimg.com252Fprofile_images252F1102364992252Fclean_code_72_color_400x400.png26key3Da19fcc184b9711e1b4764040d3dc5c07).
 
-## 4. Show me code!
+## 4. JUnit 4
 
 
 ### 4.1. Instalaçao JUnit 4 com Maven
@@ -78,7 +78,13 @@ Para usar JUnit em sua compilação do Maven, adicione a seguinte dependência a
 </dependency>
 ```
 
-### 4.2. Definindo métodos de teste
+### 4.2. Convenções de nomenclatura JUnit para Maven
+
+Se estiver usando o sistema de compilação Maven, você deve usar o sufixo "Test" para classes de teste. O sistema de compilação Maven (por meio de seu plug-in surfire) inclui automaticamente essas classes em seu escopo de teste.
+
+Esta classe pode ser executada como qualquer outro programa Java na linha de comando. Você só precisa adicionar o arquivo JAR da biblioteca JUnit ao caminho de classe.
+
+### 4.3. Definindo métodos de teste
 
 JUnit usa anotações para marcar métodos como métodos de teste e configurá-los. A tabela a seguir fornece uma visão geral das anotações mais importantes no JUnit para as versões 4.xe 5.x. Todas essas anotações podem ser usadas em métodos.
 
@@ -97,7 +103,7 @@ JUnit usa anotações para marcar métodos como métodos de teste e configurá-l
 ------------------------------------------------------------------------------
 
 
-### 4.3. Declarações de asserção 
+### 4.4. Declarações de asserção 
 
 JUnit fornece métodos estáticos para testar determinadas condições por meio da `Assert`classe. Essas **_declarações assert_** geralmente começam com `assert`. Eles permitem que você especifique a mensagem de erro, o resultado esperado e o resultado real. Um _método de asserção_ compara o valor real retornado por um teste com o valor esperado. Ele lança um `AssertionException`se a comparação falhar.
 
@@ -118,7 +124,7 @@ A tabela a seguir fornece uma visão geral desses métodos. Os parâmetros entre
 | assertSame([mensagem,] esperado, real) | Verifica se ambas as variáveis se referem ao mesmo objeto. |
 | assertNotSame([mensagem,] esperado, real) | Verifica se ambas as variáveis se referem a objetos diferentes. |
 
-### 4.4.Teste de unidade com JUnit 4
+### 4.5. Teste de unidade com JUnit 4
 
 [JUnit](http://junit.org/) é uma estrutura de teste que usa anotações para identificar métodos que especificam um teste. JUnit é um projeto de código aberto hospedado no [Github](https://github.com/junit-team/junit).
 
@@ -128,7 +134,7 @@ Este método executa o código em teste. Você usa um método **_assert_** , for
 
 **Você deve fornecer mensagens significativas em declarações assert.** Isso torna mais fácil para o usuário identificar e corrigir o problema. Isso é especialmente verdadeiro se alguém olhar para o problema, que não escreveu o código em teste ou o código de teste.
 
-_Exemplo de teste unitário_
+_Exemplo de teste unitári simples_
 
 O código a seguir mostra um teste JUnit usando a versão JUnit 4.
 
@@ -168,71 +174,25 @@ public class CalculatorTest {
 
     @Test
     void testMultiply() {
-        assertEquals( "Regular multiplication should work", calculator.multiply(4,5), 20);
+        assertEquals( "A multiplicação deve funcionar", calculator.multiply(4,5), 20);
     }
 
     @Test
     void testMultiplyWithZero() {
-        assertEquals("Multiple with zero should be zero",0,  calculator.multiply(0,5));
-        assertEquals("Multiple with zero should be zero", 0, calculator.multiply(5,0));
+        assertEquals("Multiplicação com zero deve ser zero",0,  calculator.multiply(0,5));
+        assertEquals("Multiplicação com zero deve ser zero", 0, calculator.multiply(5,0));
     }
 }
 ```
 
-
-
-## 4. Objetos simulados (Mock)
-
-Em seus testes de unidade, você deseja testar determinada funcionalidade (a classe em teste) isoladamente. Outras funcionalidades necessárias para testar a classe em teste devem ser controladas para evitar efeitos colaterais.
-
-Um **_objeto simulado_** é uma implementação fictícia de uma interface ou classe. Os objetos simulados permitem definir a saída de determinadas chamadas de métodos. Eles normalmente registram a interação com o sistema e os testes podem validar isso.
-
-**Você pode criar objetos fictícios manualmente (via código)** ou usar uma estrutura fictícia para simular essas classes. As estruturas simuladas permitem que você crie objetos simulados em tempo de execução e defina seu comportamento.
-
-O **exemplo** clássico de um objeto simulado é um provedor de dados. Na produção é usada uma implementação para conectar à fonte de dados real. Mas para testar um objeto simulado, nós simulamos a fonte de dados para garantir que as condições de teste sejam sempre as mesmas.
-
-Esses objetos simulados podem ser fornecidos para a classe que é testada. **Portanto, a classe a ser testada deve evitar qualquer dependência de dados externos.**
-
-As estruturas simuladas ou simuladas permitem testar a interação esperada com o objeto simulado. Você pode, por exemplo, validar que apenas determinados métodos foram chamados no **objeto mock.**
-
-
-### 5.4.  Convenções de nomenclatura JUnit para Maven
-
-Se estiver usando o sistema de compilação Maven, você deve usar o sufixo "Test" para classes de teste. O sistema de compilação Maven (por meio de seu plug-in surfire) inclui automaticamente essas classes em seu escopo de teste.
-
-Esta classe pode ser executada como qualquer outro programa Java na linha de comando. Você só precisa adicionar o arquivo JAR da biblioteca JUnit ao caminho de classe.
-
-
-### 6.3. Declarações de declaração
-
-JUnit fornece métodos estáticos para testar determinadas condições por meio da `Assert`classe. Essas **_declarações assert_** geralmente começam com `assert`. Eles permitem que você especifique a mensagem de erro, o resultado esperado e o resultado real. Um _método de asserção_ compara o valor real retornado por um teste com o valor esperado. Ele lança um `AssertionException`se a comparação falhar.
-
-A tabela a seguir fornece uma visão geral desses métodos. Os parâmetros entre colchetes [] são opcionais e do tipo String.
-
-
-*Tabela 2. Métodos para afirmar os resultados do teste*
-
-| Declaração | Descrição |
-|--|--|
-| falha([mensagem]) | Deixe o método falhar. Pode ser usado para verificar se uma determinada parte do código não foi alcançada ou para ter um teste com falha antes que o código de teste seja implementado. O parâmetro mensagem é opcional. |
-| assertTrue([mensagem,] condição booleana) | Verifica se a condição booleana é verdadeira. |
-| assertFalse([mensagem,] condição booleana) | Verifica se a condição booleana é falsa. |
-| assertEquals([mensagem,] esperado, real) | Testa se dois valores são iguais. Nota: para arrays a referência é verificada e não o conteúdo dos arrays. |
-| assertEquals([mensagem,] esperado, real, tolerância) | Teste se os valores float ou double correspondem. A tolerância é o número de casas decimais que devem ser iguais. |
-| assertNull([mensagem,] objeto) | Verifica se o objeto é nulo. |
-| assertNotNull([mensagem,] objeto) | Verifica se o objeto não é nulo. |
-| assertSame([mensagem,] esperado, real) | Verifica se ambas as variáveis ​​se referem ao mesmo objeto. |
-| assertNotSame([mensagem,] esperado, real) | Verifica se ambas as variáveis ​​se referem a objetos diferentes. |
-
-
-### 6.4  Conceito de suítes de teste JUnit
+### 4.6. Conceito de suítes de teste JUnit
 
 Se você tiver várias classes de teste, poderá combiná-las em um conjunto de testes. A execução de um conjunto de testes executa todas as classes de teste desse conjunto na ordem especificada. Um conjunto de testes também pode conter outros conjuntos de testes.
 
 O código de exemplo a seguir demonstra o uso de um conjunto de testes. Ele contém duas classes de teste (MyClassTest e MySecondClassTest). Se você quiser adicionar outra classe de teste, poderá adicioná-la à `@Suite.SuiteClasses`instrução.
 
 ```
-package br.gov.caixa.sixxx;
+package br.gov.dominio.sixxx;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -247,7 +207,7 @@ public class AllTests {
 
 }
 ```
-### 6.5  Desativando testes
+### 4.7. Desativando testes
 
 A anotação @Ignore permite ignorar estaticamente um teste. Alternativamente, você pode usar `Assume.assumeFalse`ou `Assume.assumeTrue`para definir uma condição para o teste. `Assume.assumeFalse`marca o teste como inválido, se sua condição for avaliada como verdadeira. `Assume.assumeTrue`avalia o teste como inválido se sua condição for avaliada como falsa. Por exemplo, o seguinte desabilita um teste no Linux:
 
@@ -255,7 +215,7 @@ A anotação @Ignore permite ignorar estaticamente um teste. Alternativamente, v
 Assume.assumeFalse(System.getProperty("os.name").contains("Linux"));
 ```
 
-### 6.6  Teste parametrizado
+### 4.8.  Teste parametrizado
 
 JUnit permite que você use parâmetros em uma classe de testes. Esta classe pode conter **um** método de teste e este método é executado com os diferentes parâmetros fornecidos.
 
@@ -268,7 +228,7 @@ Você pode usar a `@Parameter`anotação em campos públicos para obter os valor
 O código a seguir mostra um exemplo para um teste parametrizado. Ele testa o `multiply()`método da `MyClass`classe que está incluída como classe interna para o propósito deste exemplo.
 
 ```
-package br.gov.caixa.sixxx.testing;
+package br.gov.dominio.sixxx.testing;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -318,12 +278,12 @@ public class ParameterizedTestFields {
 }
 ```
 
-Como alternativa ao uso da `@Parameter`anotação, você pode usar um construtor no qual armazena os valores de cada teste. O número de elementos em cada array fornecido pelo método anotado `@Parameters` deve corresponder ao número de parâmetros no construtor da classe. A classe é criada para cada parâmetro e os valores de teste são passados ​​por meio do construtor para a classe.
+Como alternativa ao uso da `@Parameter`anotação, você pode usar um construtor no qual armazena os valores de cada teste. O número de elementos em cada array fornecido pelo método anotado `@Parameters` deve corresponder ao número de parâmetros no construtor da classe. A classe é criada para cada parâmetro e os valores de teste são passados por meio do construtor para a classe.
 
 .
 
 ```
-package br.gov.caixa.sixxx.testing.junit.first;
+package br.gov.dominio.sixxx.testing.junit.first;
 
 import static org.junit.Assert.assertEquals;
 
@@ -374,12 +334,12 @@ Se você executar esta classe de teste, o método de teste será executado com c
 
 Uma abordagem mais flexível e fácil de escrever é fornecida pelo JUnitParams de [https://github.com/Pragmatists/JUnitParams](https://github.com/Pragmatists/JUnitParams) .
 
-### 6.7. Regras JUnit
+### 4.7. Regras JUnit
 
-Por meio de regras JUnit, você pode adicionar comportamento a cada teste em uma classe de teste. Você pode anotar campos do tipo `TestRule`com a `@Rule`anotação. Você pode criar objetos que podem ser usados ​​e configurados em seus métodos de teste. Isso adiciona mais flexibilidade aos seus testes. Você pode, por exemplo, especificar qual mensagem de exceção você espera durante a execução do seu código de teste.
+Por meio de regras JUnit, você pode adicionar comportamento a cada teste em uma classe de teste. Você pode anotar campos do tipo `TestRule`com a `@Rule`anotação. Você pode criar objetos que podem ser usados e configurados em seus métodos de teste. Isso adiciona mais flexibilidade aos seus testes. Você pode, por exemplo, especificar qual mensagem de exceção você espera durante a execução do seu código de teste.
 
 ```
-package br.gov.caixa.sixxx.testing.junit.first;
+package br.gov.dominio.sixxx.testing.junit.first;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -405,7 +365,7 @@ JUnit já fornece várias implementações de regras úteis. Por exemplo, a `Tem
 O código a seguir mostra um exemplo para o uso da `TemporaryFolder`implementação.
 
 ```
-package br.gov.caixa.sixxx.testing.junit.first;
+package br.gov.dominio.sixxx.testing.junit.first;
 
 import static org.junit.Assert.assertTrue;
 
@@ -432,14 +392,14 @@ public class RuleTester {
 
 Para obter mais exemplos de regras existentes, consulte [https://github.com/junit-team/junit4/wiki/Rules](https://github.com/junit-team/junit4/wiki/Rules) .
 
-### 6.8. Escrevendo regras JUnit personalizadas
+### 4.7.  Escrevendo regras JUnit personalizadas
 
 Para escrever sua regra personalizada, você precisa implementar a `TestRule`interface. Esta interface define o `apply(Statement, Description)`método que deve retornar uma instância de `Statement`. A instrução representa os testes dentro do tempo de execução do JUnit e Statement#evaluate() os executa. Descrição descreve o teste individual. Permite ler informações sobre o teste via reflexão.
 
 Veja a seguir um exemplo simples para adicionar uma instrução de log a um aplicativo Android antes e depois da execução do teste.
 
 ```
-package br.gov.caixa.sixxx.testing.junit.asynctask;
+package br.gov.dominio.sixxx.testing.junit.asynctask;
 
 import android.util.Log;
 
@@ -486,7 +446,7 @@ Para usar essa regra, basta adicionar um campo anotado `@Rule`à sua classe de t
 public MyCustomRule myRule = new MyCustomRule();
 ```
 
-### 6.9. Categorias 
+### 4.8.  Categorias 
 
 É possível definir categorias de testes e incluí-los ou excluí-los com base em anotações. O exemplo a seguir é baseado nas [notas de versão do JUnit 4.8](https://github.com/junit-team/junit/blob/master/doc/ReleaseNotes4.8.md) .
 
@@ -534,9 +494,9 @@ public class SlowTestSuite {
 }
 ```
 
-### 6.10. Importações estáticas JUnit
+### 4.9.  Importações estáticas JUnit
 
-A importação estática é um recurso que permite que campos e métodos definidos em uma classe `public static`sejam usados ​​sem especificar a classe na qual o campo está definido.
+A importação estática é um recurso que permite que campos e métodos definidos em uma classe `public static`sejam usados sem especificar a classe na qual o campo está definido.
 
 As instruções de assert JUnit são normalmente definidas `public static`para permitir que o desenvolvedor escreva instruções de teste curtas. O trecho a seguir demonstra uma instrução assert com e sem importações estáticas.
 .
