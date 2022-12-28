@@ -29,47 +29,30 @@ Para maiores informações consulte https://owasp.org/, no seu top 10 de [maiore
 
 ## 2. A Pirâmide de Teste
 
-<p align="center">
-    ![alt text](https://github.com/marquesbmc/images/blob/main/test-piramide.png)
-</p>
-  
 
 <p align="center">
   <img  src="https://github.com/marquesbmc/images/blob/main/test-piramide.png">
 </p>
 
+A pirâmide de teste original de Mike Cohn consiste em três camadas nas quais sua suíte de teste deve consistir (de baixo para cima):
 
-## 1. O objetivo dos testes de software
+-  **_Testes de unidade_**
+-  **_Testes de serviço_**
+-  **_Testes de interface do usuário_**
 
-Com os testes de software, você garante que certas partes do nosso software funcionem conforme o esperado. Esses **testes geralmente são executados automaticamente** por meio do sistema de compilação e, portanto, ajudam o desenvolvedor a evitar quebrar o código existente durante as atividades de desenvolvimento.
+Observações Relevantes:
 
-Executar testes automaticamente ajuda a identificar regressões de software introduzidas por alterações no código-fonte. Ter uma **alta cobertura de teste do seu código** permite que você continue desenvolvendo recursos sem ter que realizar muitos testes manuais.
+-  **_O que testar?_**: **Você deve escrever testes de software para as partes críticas e complexas do seu aplicativo.** Se você introduzir novos recursos, um conjunto de testes sólido também o protegerá contra a regressão no código existente.
 
-**Você deve escrever testes de software para as partes críticas e complexas do seu aplicativo.** Se você introduzir novos recursos, um conjunto de testes sólido também o protegerá contra a regressão no código existente.
+-  **_Não perca tempo!_**: Alguns desenvolvedores acreditam que cada instrução em seu código deve ser testada, mas **em geral é seguro ignorar código trivial.** Por exemplo, normalmente é inútil escrever testes para métodos getter e setter que simplesmente atribuem valores a campos. Escrever testes para essas instruções é demorado e inútil, pois você estaria testando a máquina virtual Java. A própria JVM já possui casos de teste para isso. Se você estiver desenvolvendo aplicativos de usuário final, pode presumir que uma atribuição de campo funciona em Java.
 
-Alguns desenvolvedores acreditam que cada instrução em seu código deve ser testada, mas **em geral é seguro ignorar código trivial.** Por exemplo, normalmente é inútil escrever testes para métodos getter e setter que simplesmente atribuem valores a campos. Escrever testes para essas instruções é demorado e inútil, pois você estaria testando a máquina virtual Java. A própria JVM já possui casos de teste para isso. Se você estiver desenvolvendo aplicativos de usuário final, pode presumir que uma atribuição de campo funciona em Java.
+-  **_Automatizar é o caminho?_**:Executar testes automaticamente ajuda a identificar regressões de software introduzidas por alterações no código-fonte. Ter uma **alta cobertura de teste do seu código** permite que você continue desenvolvendo recursos sem ter que realizar muitos testes manuais.
 
-Se você começar a desenvolver testes para uma base de código existente sem nenhum teste, **é uma boa prática começar a escrever testes para código em que a maioria dos erros ocorreu no passado**. Dessa forma, você pode se concentrar nas partes críticas do seu aplicativo.
-
-## 2.  Terminologia de teste
-
-O código que é testado normalmente é chamado de **_código em teste_** . Se você estiver testando um aplicativo, isso será chamado de **_aplicativo em teste_** .
-
-Um **_dispositivo de teste_** é um estado fixo de um conjunto de objetos que são usados como linha de base para a execução de testes. Outra maneira de descrever isso é uma pré-condição de teste.
-
-Por exemplo, um acessório de teste pode ser uma string fixa, que é usada como entrada para um método. O teste validaria se o método se comporta corretamente com essa entrada.
+-  **_Onde começar?_**:Se você começar a desenvolver testes para uma base de código existente sem nenhum teste, **é uma boa prática começar a escrever testes para código em que a maioria dos erros ocorreu no passado**. Dessa forma, você pode se concentrar nas partes críticas do seu aplicativo.
 
 
+[fonte:](https://martinfowler.com/articles/practical-test-pyramid.html)
 
-## 2.2. Teste de comportamento vs. estado
-
-Um teste é um teste de comportamento (também chamado teste de interação) se verifica se determinados métodos foram chamados com os parâmetros de entrada corretos. Um teste de comportamento não valida o resultado de uma chamada de método.
-
--   **_Teste de estado_**  é sobre validar o resultado. 
-
--   **_Teste de comportamento_**  é sobre testar o comportamento do aplicativo em teste.
-
-Se você estiver testando algoritmos ou funcionalidades do sistema, na maioria dos casos você pode querer testar o estado e não as interações. **Uma configuração de teste típica usa mocks ou stubs de classes relacionadas para abstrair as interações com essas outras classes.** Depois você testa o estado ou o comportamento dependendo de sua necessidade.
 
 ## 3. Convenções de nomenclatura de classes e métodos de teste
 
