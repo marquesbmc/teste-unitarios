@@ -2,15 +2,18 @@
 
 ![alt text](https://github.com/marquesbmc/images/blob/main/1-test.jpg)
 
-
-
 *<h1 align="right">"O seu código sempre vai ser testado!" </h1>*
 
+## 1. Definição de Teste de Software segundo Engenharia de Software
+
+De acordo com o Padrão de Teste de Software ANSI/IEEE 1059,  o Teste em Engenharia de Software é um processo de análise de um produto ou sistema de software para examinar um produto ou sistema de software para determinar se ele satisfaz ou deixa de satisfazer as condições estabelecidas (ou seja, defeitos). O processo de teste avalia as características dos produtos de software quanto a requisitos como requisitos ausentes, bugs ou erros para avaliar sua confiabilidade, segurança e desempenho.
 
 
 ## 1. O objetivo dos testes de software
 
 Um teste de software é um **software que executa outro software** afirmando que ele se comporta de uma determinada maneira.
+
+([ANSI/IEEE 1059](https://www.softwaretestingmaterial.com/international-software-testing-standards/))
 
 Com os testes de software, você garante que certas partes do nosso software funcionem conforme o esperado. Esses **testes geralmente são executados automaticamente** por meio do sistema de compilação e, portanto, ajudam o desenvolvedor a evitar quebrar o código existente durante as atividades de desenvolvimento.
 
