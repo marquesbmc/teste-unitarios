@@ -683,6 +683,7 @@ public class LeilaoDao {
 
 <details close>
 <summary markdown="span">class UsuarioDao</summary>
+	
 ```
 package br.com.dominio.sixxx.dao;
 
@@ -723,7 +724,7 @@ public class UsuarioDao {
 }
 
 ```
-	
+
 </details>
 
 
@@ -797,6 +798,7 @@ public class Lance {
 }
 
 ```
+
 </details>
 
 <details close>
